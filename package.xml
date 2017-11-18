@@ -10,7 +10,9 @@
 
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>audio_common_msgs</build_depend>
+  <build_depend>dynamic_reconfigure</build_depend>
   <build_depend>hark_msgs</build_depend>
   <run_depend>audio_common_msgs</run_depend>
+  <run_depend>dynamic_reconfigure</run_depend>
   <run_depend>hark_msgs</run_depend>
 </package>

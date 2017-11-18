@@ -3,14 +3,19 @@ project(hark_audio_capture)
 
 find_package(catkin REQUIRED COMPONENTS
   audio_common_msgs
+  dynamic_reconfigure
   hark_msgs
+  roscpp
 )
 
-find_package(Boost REQUIRED COMPONENTS system)
+find_package(Boost REQUIRED COMPONENTS system thread)
+
+generate_dynamic_reconfigure_options(
+  cfg/HarkAudioCapture.cfg
+)
 
 catkin_package(
-  INCLUDE_DIRS include
-  CATKIN_DEPENDS audio_common_msgs hark_msgs
+  CATKIN_DEPENDS audio_common_msgs dynamic_reconfigure hark_msgs
 )
 
 include_directories(
@@ -18,6 +23,8 @@ include_directories(
 )
 
 add_executable(${PROJECT_NAME} src/hark_audio_capture_node.cpp)
+add_dependencies(${PROJECT_NAME} ${PROJECT_NAME}_gencpp ${PROJECT_NAME}_gencfg)
+
 
 target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
